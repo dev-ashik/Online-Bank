@@ -5,9 +5,26 @@ body{
 .text-center{
     text-align: center;
 }
-.submit{
+.box-shadow{
     margin-top: 50px;
     border-radius: 10px;
     box-shadow: 10px 10px 40px gray;
-    padding: 50px;
+    padding: 40px;
+}
+#transaction-area{
+    display: none;
+}
+.status{
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+}
+.deposit{
+    background-color: slateblue;
+}
+.withdraw{
+    background-color: lightsalmon;
+}
+.balance{
+    background-color: orange;
 }
