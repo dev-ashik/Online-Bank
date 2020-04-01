@@ -1,6 +1,7 @@
 
 body{
     padding: 100px;
+    margin-bottom: none;
 }
 .text-center{
     text-align: center;
@@ -27,4 +28,9 @@ body{
 }
 .balance{
     background-color: orange;
+}
+footer{
+    text-align: center;
+    margin-top: 100px;
+    
 }
