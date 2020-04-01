@@ -57,7 +57,7 @@
                     <h4>Withdraw</h4>
                     <input id="input-withdraw" class="form-control" type="text" placeholder="$ amount you want to withdraw">
                     <br>
-                    <button id="withdraw-amount" class="btn btn-success">Withdraw</button>
+                    <button id="withdraw-button" class="btn btn-success">Withdraw</button>
                 </div>
             </div>
         </div>
@@ -83,21 +83,36 @@
             const inputDeposit = document.getElementById("input-deposit").value;
             const inputDepositNumber = parseFloat(inputDeposit);
             
-            addDeposit("old-deposit", inputDepositNumber);
-            addDeposit("total-amount", inputDepositNumber);
+            addAmount("old-deposit", inputDepositNumber);
+            addAmount("total-amount", inputDepositNumber);
+
+            document.getElementById("input-deposit").value = "";
+        })
 
 
-
-            function addDeposit(balanceId, inputAmount){
+        function addAmount(balanceId, inputAmount){
                 const Amount = document.getElementById(balanceId).innerText;
                 const AmountNumber = parseFloat(Amount);
                 const totalBalance = AmountNumber + inputAmount;
                 document.getElementById(balanceId).innerText = totalBalance;
             };
 
-            document.getElementById("input-deposit").value = "";
-        })
-            
+
+        //withdraw button event handler
+        const withdrawButton = document.getElementById("withdraw-button");
+        withdrawButton.addEventListener("click", function(){
+            const inputWithdraw = document.getElementById("input-withdraw").value;
+            const inputWithdrawNumber = parseFloat(inputWithdraw);
+
+            addAmount("old-withdraw", inputWithdrawNumber);
+
+            const totalCurrantAmount = document.getElementById("total-amount").innerText;
+            const totalCurrantAmountNumber = parseFloat(totalCurrantAmount);
+            const totalUpdateAmount = totalCurrantAmountNumber - inputWithdrawNumber;
+            document.getElementById("total-amount").innerText = totalUpdateAmount;
+
+            document.getElementById("input-withdraw").value = "";
+        });
         
            
         
