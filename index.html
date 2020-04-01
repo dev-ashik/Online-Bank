@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <!-- login page -->
     <div id="login-page" class="login-form">
         <h1 class="text-center">Welcome to Online-Bank</h1>
         <div class="submit-area box-shadow">
@@ -20,6 +21,7 @@
         </div>
     </div>
     
+    <!-- Transaction area -->
     <div id="transaction-area">
         <div class="row">
             <div class="col-md-4">
@@ -66,7 +68,9 @@
 
     <script>
 
+
         //login button event handler
+
         const enterBtn = document.getElementById("login-btn");   /** enterBtn is a variable. and first line looking for loginBtn id.*/
         enterBtn.addEventListener("click", function(){    /** "click"
         for event reference*/
@@ -76,12 +80,11 @@
             transactionArea.style.display = "block";
         });
         
-        //deposit button event handler
 
+        //deposit button event handler
         const depositButton = document.getElementById("deposit-button");
         depositButton.addEventListener("click", function(){
-            const inputDeposit = document.getElementById("input-deposit").value;
-            const inputDepositNumber = parseFloat(inputDeposit);
+            const inputDepositNumber = getInputValue("input-deposit");
             
             addAmount("old-deposit", inputDepositNumber);
             addAmount("total-amount", inputDepositNumber);
@@ -90,6 +93,18 @@
         })
 
 
+        //withdraw button event handler
+        const withdrawButton = document.getElementById("withdraw-button");
+        withdrawButton.addEventListener("click", function(){
+            const inputWithdrawNumber = getInputValue("input-withdraw");
+
+            addAmount("old-withdraw", inputWithdrawNumber);
+            addAmount("total-amount", -1 * inputWithdrawNumber);
+
+            document.getElementById("input-withdraw").value = "";
+        });
+        
+           
         function addAmount(balanceId, inputAmount){
                 const Amount = document.getElementById(balanceId).innerText;
                 const AmountNumber = parseFloat(Amount);
@@ -97,33 +112,13 @@
                 document.getElementById(balanceId).innerText = totalBalance;
             };
 
-
-        //withdraw button event handler
-        const withdrawButton = document.getElementById("withdraw-button");
-        withdrawButton.addEventListener("click", function(){
-            const inputWithdraw = document.getElementById("input-withdraw").value;
-            const inputWithdrawNumber = parseFloat(inputWithdraw);
-
-            addAmount("old-withdraw", inputWithdrawNumber);
-
-            const totalCurrantAmount = document.getElementById("total-amount").innerText;
-            const totalCurrantAmountNumber = parseFloat(totalCurrantAmount);
-            const totalUpdateAmount = totalCurrantAmountNumber - inputWithdrawNumber;
-            document.getElementById("total-amount").innerText = totalUpdateAmount;
-
-            document.getElementById("input-withdraw").value = "";
-        });
-        
-           
-        
-
-        
-
-        
-           
-        
-
+        function getInputValue(inputId){
+            const inputAmount = document.getElementById(inputId).value;
+            const inputAmountNumber = parseFloat(inputAmount);
+            return inputAmountNumber;
+        };
 
     </script>
+
 </body>
 </html>
